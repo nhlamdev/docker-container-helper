@@ -1,0 +1,11 @@
+FROM registry:2
+
+# Add a custom configuration file with username and password
+COPY ./config.yml /etc/docker/registry/config.yml
+COPY ./htpasswd /etc/docker/registry/htpasswd
+
+# Expose the registry port
+EXPOSE 5000
+
+# Start the registry with the custom configuration file
+CMD ["registry", "serve", "/etc/docker/registry/config.yml"]
